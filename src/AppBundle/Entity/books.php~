@@ -1,0 +1,248 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * books
+ *
+ * @ORM\Table(name="books")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\booksRepository")
+ */
+class books
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="images", mappedBy="books")
+     */
+    private $images;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="favorites", mappedBy="books")
+     */
+    private $favorites;
+
+    public function __construct() {
+        $this->images = new ArrayCollection();
+        $this->favorites = new ArrayCollection();
+    }
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="categories", inversedBy="books")
+     * @ORM\JoinColumn(name="categoryId", referencedColumnName="id")
+     */
+    private $categories;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="users", inversedBy="books")
+     * @ORM\JoinColumn(name="userId", referencedColumnName="id")
+     */
+    private $users;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="author", type="string", length=255, nullable=true)
+     */
+    private $author;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="forChange", type="boolean", nullable=true)
+     */
+    private $forChange;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="keyWords", type="string", length=255, nullable=true)
+     */
+    private $keyWords;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="addedAt", type="date")
+     */
+    private $addedAt;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return books
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set author
+     *
+     * @param string $author
+     *
+     * @return books
+     */
+    public function setAuthor($author)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return string
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return books
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set forChange
+     *
+     * @param boolean $forChange
+     *
+     * @return books
+     */
+    public function setForChange($forChange)
+    {
+        $this->forChange = $forChange;
+
+        return $this;
+    }
+
+    /**
+     * Get forChange
+     *
+     * @return bool
+     */
+    public function getForChange()
+    {
+        return $this->forChange;
+    }
+
+    /**
+     * Set keyWords
+     *
+     * @param string $keyWords
+     *
+     * @return books
+     */
+    public function setKeyWords($keyWords)
+    {
+        $this->keyWords = $keyWords;
+
+        return $this;
+    }
+
+    /**
+     * Get keyWords
+     *
+     * @return string
+     */
+    public function getKeyWords()
+    {
+        return $this->keyWords;
+    }
+
+    /**
+     * Set addedAt
+     *
+     * @param \DateTime $addedAt
+     *
+     * @return books
+     */
+    public function setAddedAt($addedAt)
+    {
+        $this->addedAt = $addedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get addedAt
+     *
+     * @return \DateTime
+     */
+    public function getAddedAt()
+    {
+        return $this->addedAt;
+    }
+}
+
