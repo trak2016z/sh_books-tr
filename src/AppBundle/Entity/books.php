@@ -61,6 +61,13 @@ class books
      * @ORM\Column(name="author", type="string", length=255, nullable=true)
      */
     private $author;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ratingOverall", type="decimal", precision=10, scale=2)
+     */
+    private $price;
 
     /**
      * @var string
@@ -359,5 +366,29 @@ class books
     public function getUsers()
     {
         return $this->users;
+    }
+
+    /**
+     * Set price
+     *
+     * @param string $price
+     *
+     * @return books
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return string
+     */
+    public function getPrice()
+    {
+        return $this->price;
     }
 }

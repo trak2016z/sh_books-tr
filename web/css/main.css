@@ -1,9 +1,27 @@
+/* Books list */
+.books-img {
+    height: 120px;
+    width: 100%;
+    object-fit: contain;
+}
+
+/* Top panel */ 
+.navbar {
+    border-radius: 0;
+}
+.dropdown-menu {
+    left: auto !important;
+    right: auto !important;
+    z-index: 1000;
+    /*float: left;*/
+}
+
+.categories ul {
+  list-style-type: none;
+  padding-left: 10px;
+}
+
+/* Others */
 .hidden {
     display: none;
-}
-.books-img {
-    
-}
-.books-name {
-    
 }

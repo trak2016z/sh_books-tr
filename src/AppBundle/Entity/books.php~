@@ -61,11 +61,18 @@ class books
      * @ORM\Column(name="author", type="string", length=255, nullable=true)
      */
     private $author;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ratingOverall", type="decimal", precision=10, scale=2)
+     */
+    private $price;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="string", length=255)
      */
     private $description;
 
@@ -244,5 +251,120 @@ class books
     {
         return $this->addedAt;
     }
-}
 
+    /**
+     * Add image
+     *
+     * @param \AppBundle\Entity\images $image
+     *
+     * @return books
+     */
+    public function addImage(\AppBundle\Entity\images $image)
+    {
+        $this->images[] = $image;
+
+        return $this;
+    }
+
+    /**
+     * Remove image
+     *
+     * @param \AppBundle\Entity\images $image
+     */
+    public function removeImage(\AppBundle\Entity\images $image)
+    {
+        $this->images->removeElement($image);
+    }
+
+    /**
+     * Get images
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    /**
+     * Add favorite
+     *
+     * @param \AppBundle\Entity\favorites $favorite
+     *
+     * @return books
+     */
+    public function addFavorite(\AppBundle\Entity\favorites $favorite)
+    {
+        $this->favorites[] = $favorite;
+
+        return $this;
+    }
+
+    /**
+     * Remove favorite
+     *
+     * @param \AppBundle\Entity\favorites $favorite
+     */
+    public function removeFavorite(\AppBundle\Entity\favorites $favorite)
+    {
+        $this->favorites->removeElement($favorite);
+    }
+
+    /**
+     * Get favorites
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFavorites()
+    {
+        return $this->favorites;
+    }
+
+    /**
+     * Set categories
+     *
+     * @param \AppBundle\Entity\categories $categories
+     *
+     * @return books
+     */
+    public function setCategories(\AppBundle\Entity\categories $categories = null)
+    {
+        $this->categories = $categories;
+
+        return $this;
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \AppBundle\Entity\categories
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    /**
+     * Set users
+     *
+     * @param \AppBundle\Entity\users $users
+     *
+     * @return books
+     */
+    public function setUsers(\AppBundle\Entity\users $users = null)
+    {
+        $this->users = $users;
+
+        return $this;
+    }
+
+    /**
+     * Get users
+     *
+     * @return \AppBundle\Entity\users
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+}

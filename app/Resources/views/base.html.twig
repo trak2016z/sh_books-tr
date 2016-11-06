@@ -20,10 +20,113 @@
     
 </head>
 
-<body>    
+<body>  
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <button type="button" data-toggle="collapse" data-target="#menu" class="navbar-toggle">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="#" class="navbar-brand"><i class="fa fa-home"></i></a>
+        </div>
+
+        <div id="menu" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                {#<li class="active"><a href="#">Home</a></li>#}
+                <li style='position: static'>
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Kategorie <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="categories">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-book"></i> Albumy</a></li>
+                                        <li><a href="#"><i class="fa fa-book"></i> Biografie</a></li>
+                                        <li><a href="#"><i class="fa fa-book"></i> Biznes, ekonomia, marketing</a></li>
+                                        <li><a href="#"><i class="fa fa-book"></i> Dla dzieci</a></li>
+                                        <li><a href="#"><i class="fa fa-book"></i> Dla młodzieży</a></li>
+                                        <li><a href="#"><i class="fa fa-book"></i> Encyklopedie, leksykony</a></li>
+                                        <li><a href="#"><i class="fa fa-book"></i> Fantastyka</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-sm-3">
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-book"></i> Filozofia</a></li>
+                                        <li><a href="#"><i class="fa fa-book"></i> Historia</a></li>
+                                        <li><a href="#"><i class="fa fa-book"></i> Informatyka</a></li>
+                                        <li><a href="#"><i class="fa fa-book"></i> Językoznawstwo, język polski</a></li>
+                                        <li><a href="#"><i class="fa fa-book"></i> Kalendarze</a></li>
+                                        <li><a href="#"><i class="fa fa-book"></i> Komiks</a></li>
+                                        <li><a href="#"><i class="fa fa-book"></i> Kuchnia i diety</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-sm-3">
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-book"></i> Literatura</a></li>
+                                        <li><a href="#"><i class="fa fa-book"></i> Literatura faktu</a></li>
+                                        <li><a href="#"><i class="fa fa-book"></i> Literatura obyczajowa</a></li>
+                                        <li><a href="#"><i class="fa fa-book"></i> Nauka języków</a></li>
+                                        <li><a href="#"><i class="fa fa-book"></i> Nauki ścisłe, medycyna</a></li>
+                                        <li><a href="#"><i class="fa fa-book"></i> Podręczniki szkolne, edukacja</a></li>
+                                        <li><a href="#"><i class="fa fa-book"></i> Poradniki</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-sm-3">
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-book"></i> Prawo</a></li>
+                                        <li><a href="#"><i class="fa fa-book"></i> Psychologia i pedagogika</a></li>
+                                        <li><a href="#"><i class="fa fa-book"></i> Religie i wyznania</a></li>
+                                        <li><a href="#"><i class="fa fa-book"></i> Romans</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </nav>
+    {#
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">SH Books</a>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Page 1-1</a></li>
+                  <li><a href="#">Page 1-2</a></li>
+                  <li><a href="#">Page 1-3</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Page 2</a></li>
+              <li><a href="#">Page 3</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#"><span class="glyphicon glyphicon-user"></span> Załóż konto</a></li>
+              <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Zaloguj się</a></li>
+            </ul>
+          </div>
+        </div>
+    </nav>#}
+    
     <div class="container-fluid">
         {% block container %}{% endblock %}
     </div>
+    
     {% block javascripts %}
     <script src="http://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

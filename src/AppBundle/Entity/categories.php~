@@ -71,5 +71,38 @@ class categories
     {
         return $this->name;
     }
-}
 
+    /**
+     * Add book
+     *
+     * @param \AppBundle\Entity\books $book
+     *
+     * @return categories
+     */
+    public function addBook(\AppBundle\Entity\books $book)
+    {
+        $this->books[] = $book;
+
+        return $this;
+    }
+
+    /**
+     * Remove book
+     *
+     * @param \AppBundle\Entity\books $book
+     */
+    public function removeBook(\AppBundle\Entity\books $book)
+    {
+        $this->books->removeElement($book);
+    }
+
+    /**
+     * Get books
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBooks()
+    {
+        return $this->books;
+    }
+}

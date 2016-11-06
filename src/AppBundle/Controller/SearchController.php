@@ -23,51 +23,46 @@ class SearchController extends Controller {
      * @Route("/", name="homepage")
      */
     public function homepageAction(Request $request) {
-        ConstantsHelper::initialize($request);
-        $hidden = 'hidden';
         $search = new Search();
         $em = $this->getDoctrine()->getManager();
         $form = $this->_createSearchForm($search);
         $form->handleRequest($request);
-        if ($form->isSubmitted()) {
-            if ($form->isValid()) {
-                $searchArray = $this->_prepareSearchArray($form->getData());
-                return $this->redirectToRoute('books', $searchArray);
-            }
-            $hidden = '';
+        if ($form->isSubmitted() && $form->isValid()) {
+            $searchArray = $this->_prepareSearchArray($form->getData());
+            return $this->redirectToRoute('books', $searchArray);
         }
-        //$books = $em->getRepository('AppBundle:books')->findLastBooks(ConstantsHelper::$usaDateTimeFormat);
-        $books = [];
+        $books = $em->getRepository('AppBundle:books')->findLastBooks();
+        
+        $booksIds = array_column($books, 'id');
+        $bookImages = $em->getRepository('AppBundle:images')->findByBookIds($booksIds);
+        $bookImageArray = [];
+        foreach ($bookImages as $bookImage) {
+            $bookImageArray[$bookImage['bookId']] = $bookImage['name'];
+        }
         
         return $this->render('page/home.html.twig', array(
             'form' => $form->createView(),
             'search' => $search,
-            'hidden' => $hidden,
             'twigDateFormat' => ConstantsHelper::$twigDateFormat,
             'dateFormat' => ConstantsHelper::$dateFormat,
-            'books' => $books
+            'books' => $books,
+            'booksImage' => $bookImageArray
         )); 
     }
-	
+    	
     /**
      * Renders a list of searched tours.
      * 
      * @Route("/books/{category}/{searchField}", name="books")
      */
     public function booksAction(Request $request, $category=0, $searchField=0) {
-        
-        ConstantsHelper::initialize($request);
         $parameters = $this->_prepareParameters($category, $searchField);
-        $hidden = 'hidden';
         $search = new Search();
         $form = $this->_createSearchForm($search, $parameters);
         $form->handleRequest($request);
-        if ($form->isSubmitted()) {
-            if ($form->isValid()) {
-                $searchArray = $this->_prepareSearchArray($form->getData());
-                return $this->redirectToRoute('books', $searchArray);
-            }
-            $hidden = '';
+        if ($form->isSubmitted() && $form->isValid()) {
+            $searchArray = $this->_prepareSearchArray($form->getData());
+            return $this->redirectToRoute('books', $searchArray);
         }
         $em = $this->getDoctrine()->getManager();
 	/*$books = $em->getRepository('AppBundle:books')->findBooks( 
@@ -79,7 +74,6 @@ class SearchController extends Controller {
         $variables = array(
             'form' => $form->createView(),
             'books' => $books,
-            'hidden' => $hidden,
             'twigDateFormat' => ConstantsHelper::$twigDateFormat,
             'dateFormat' => ConstantsHelper::$dateFormat,
         )  + $parameters;

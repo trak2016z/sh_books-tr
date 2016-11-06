@@ -24,22 +24,5 @@ class ConstantsHelper {
      * USA date format, the same like in database.
      */
     public static $usaDateFormat = "Y-m-d";
-    
-    /*
-     * USA date time format, the same like in database.
-     */
-    public static $usaDateTimeFormat = "Y-m-d H:i:s";
-    
-    /*
-     * The session object, which contains many important informactions like user role.
-     */
-    public static $session;
-
-    /*
-     * Initialize values of some class variables.
-     */
-    public static function initialize($request) {
-        self::$session = $request->getSession();
-    }
-        
+            
 }

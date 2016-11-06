@@ -99,5 +99,28 @@ class images
     {
         return $this->sequence;
     }
-}
 
+    /**
+     * Set books
+     *
+     * @param \AppBundle\Entity\books $books
+     *
+     * @return images
+     */
+    public function setBooks(\AppBundle\Entity\books $books = null)
+    {
+        $this->books = $books;
+
+        return $this;
+    }
+
+    /**
+     * Get books
+     *
+     * @return \AppBundle\Entity\books
+     */
+    public function getBooks()
+    {
+        return $this->books;
+    }
+}

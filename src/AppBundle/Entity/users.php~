@@ -201,5 +201,72 @@ class users
     {
         return $this->phone;
     }
-}
 
+    /**
+     * Add favorite
+     *
+     * @param \AppBundle\Entity\favorites $favorite
+     *
+     * @return users
+     */
+    public function addFavorite(\AppBundle\Entity\favorites $favorite)
+    {
+        $this->favorites[] = $favorite;
+
+        return $this;
+    }
+
+    /**
+     * Remove favorite
+     *
+     * @param \AppBundle\Entity\favorites $favorite
+     */
+    public function removeFavorite(\AppBundle\Entity\favorites $favorite)
+    {
+        $this->favorites->removeElement($favorite);
+    }
+
+    /**
+     * Get favorites
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFavorites()
+    {
+        return $this->favorites;
+    }
+
+    /**
+     * Add book
+     *
+     * @param \AppBundle\Entity\books $book
+     *
+     * @return users
+     */
+    public function addBook(\AppBundle\Entity\books $book)
+    {
+        $this->books[] = $book;
+
+        return $this;
+    }
+
+    /**
+     * Remove book
+     *
+     * @param \AppBundle\Entity\books $book
+     */
+    public function removeBook(\AppBundle\Entity\books $book)
+    {
+        $this->books->removeElement($book);
+    }
+
+    /**
+     * Get books
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBooks()
+    {
+        return $this->books;
+    }
+}

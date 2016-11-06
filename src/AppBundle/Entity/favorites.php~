@@ -43,5 +43,52 @@ class favorites
     {
         return $this->id;
     }
-}
 
+    /**
+     * Set books
+     *
+     * @param \AppBundle\Entity\books $books
+     *
+     * @return favorites
+     */
+    public function setBooks(\AppBundle\Entity\books $books = null)
+    {
+        $this->books = $books;
+
+        return $this;
+    }
+
+    /**
+     * Get books
+     *
+     * @return \AppBundle\Entity\books
+     */
+    public function getBooks()
+    {
+        return $this->books;
+    }
+
+    /**
+     * Set users
+     *
+     * @param \AppBundle\Entity\users $users
+     *
+     * @return favorites
+     */
+    public function setUsers(\AppBundle\Entity\users $users = null)
+    {
+        $this->users = $users;
+
+        return $this;
+    }
+
+    /**
+     * Get users
+     *
+     * @return \AppBundle\Entity\users
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+}
