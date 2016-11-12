@@ -23,4 +23,42 @@ class booksRepository extends \Doctrine\ORM\EntityRepository {
         return $query->getResult();
     }
     
+    /**
+     * Returns books that match to the search criteria.
+     */
+    public function findBooks($category, $searchField) {
+        $em = $this->getEntityManager();
+        
+        $parameters = array();
+        $where = '';
+        if ((int)$category != 0) {
+            $where .= "WHERE b.categories = :category";
+            $parameters['category'] = $category;
+        } else if ($searchField != '0') {
+            $where .= "WHERE b.name LIKE '%$searchField%' OR b.author LIKE '%$searchField%' OR b.keyWords LIKE '%$searchField%'";
+        }
+        
+        $query = $em->createQuery(
+            "SELECT b.id, b.name, b.author, b.price, b.description, b.forChange 
+            FROM AppBundle:books b 
+            $where 
+            ORDER BY b.addedAt DESC"
+        )->setParameters($parameters);
+        return $query->getResult();
+    }
+    
+    /**
+     * Returns book with specyfic book id.
+     */
+    public function findByBookId($bookId) {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            "SELECT b.id, b.name, b.author, b.price, b.description, b.forChange 
+            FROM AppBundle:books b 
+            WHERE b.id = :bookId 
+            ORDER BY b.addedAt DESC"
+        )->setParameter("bookId", $bookId);
+        return $query->getResult();
+    }
+    
 }

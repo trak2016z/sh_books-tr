@@ -24,5 +24,12 @@ class ConstantsHelper {
      * USA date format, the same like in database.
      */
     public static $usaDateFormat = "Y-m-d";
+    
+    /*
+     * Initialize some default formats.
+     */
+    public static function initialize($twigExtensionCore) {
+        $twigExtensionCore->setNumberFormat(2, ',', ' ');
+    }
             
 }

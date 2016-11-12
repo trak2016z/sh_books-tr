@@ -9,11 +9,33 @@
 .navbar {
     border-radius: 0;
 }
+
+.navbar-form {
+    margin-left: auto;
+    padding-right: 0px;
+    margin-right: 1px;
+}
+
 .dropdown-menu {
     left: auto !important;
     right: auto !important;
     z-index: 1000;
     /*float: left;*/
+}
+
+.search-group {
+    display: inline-flex;
+}
+
+.search-group input {
+    width: 230px!important;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.search-group button {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
 }
 
 .categories ul {

@@ -23,6 +23,7 @@ class SearchController extends Controller {
      * @Route("/", name="homepage")
      */
     public function homepageAction(Request $request) {
+        ConstantsHelper::initialize($this->get('twig')->getExtension('core')); 
         $search = new Search();
         $em = $this->getDoctrine()->getManager();
         $form = $this->_createSearchForm($search);
@@ -51,11 +52,12 @@ class SearchController extends Controller {
     }
     	
     /**
-     * Renders a list of searched tours.
+     * Renders a list of searched books.
      * 
      * @Route("/books/{category}/{searchField}", name="books")
      */
     public function booksAction(Request $request, $category=0, $searchField=0) {
+        ConstantsHelper::initialize($this->get('twig')->getExtension('core'));
         $parameters = $this->_prepareParameters($category, $searchField);
         $search = new Search();
         $form = $this->_createSearchForm($search, $parameters);
@@ -65,15 +67,22 @@ class SearchController extends Controller {
             return $this->redirectToRoute('books', $searchArray);
         }
         $em = $this->getDoctrine()->getManager();
-	/*$books = $em->getRepository('AppBundle:books')->findBooks( 
-                ConstantsHelper::$usaDateTimeFormat,
-                $parameters['searchField'], 
-                $parameters['category']); */
-        $books = [];
-         
+	$books = $em->getRepository('AppBundle:books')->findBooks($parameters['category'], $parameters['searchField']); 
+        
+        $bookImageArray = [];
+        if(!empty($books)) {
+            $booksIds = array_column($books, 'id');
+            $bookImages = $em->getRepository('AppBundle:images')->findByBookIds($booksIds);
+            foreach ($bookImages as $bookImage) {
+                $bookImageArray[$bookImage['bookId']] = $bookImage['name'];
+            }
+        }
+        
         $variables = array(
             'form' => $form->createView(),
             'books' => $books,
+            'booksImage' => $bookImageArray,
+            'searchField' => $parameters['searchField'],
             'twigDateFormat' => ConstantsHelper::$twigDateFormat,
             'dateFormat' => ConstantsHelper::$dateFormat,
         )  + $parameters;
@@ -112,6 +121,7 @@ class SearchController extends Controller {
      * For example, " " can't be inserted to URL address, so it's transform to "+"
      */
     private function _prepareSearchArray($search) {
+        $searchArray['category'] = '0';
         $searchArray['searchField'] = str_replace(" ", "+", $search->searchField);
                 
         return $searchArray;

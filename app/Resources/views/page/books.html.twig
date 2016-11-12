@@ -1,1 +1,29 @@
-{# empty Twig template #}
+{% extends 'base.html.twig' %}
+
+{% block container %}
+    {{ parent() }}
+    <div class="row">
+        {% if books is empty %}
+            <h2>Brak wyników dla: "{{ searchField }}"</h2>
+        {% else %}
+            {% for book in books %}    
+                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <p>{{ book['name'] }}</p>
+                            <p>{{ book['author'] }}</p>
+                        </div>
+                        <div class="panel-body">
+                            <a href="#" target="_blank" title="{{ book['description'] }}">
+                                <img src="{{ asset('images/') }}{{ booksImage[book['id']] }}" class="img-responsive books-img">
+                            </a>
+                        </div>
+                        <div class="panel-footer">
+                            {{ book['price']|number_format }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}

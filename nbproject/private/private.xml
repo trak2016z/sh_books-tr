@@ -3,9 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/wamp64/www/sh_books/app/Resources/views/page/home.html.twig</file>
             <file>file:/C:/wamp64/www/sh_books/src/AppBundle/Repository/booksRepository.php</file>
             <file>file:/C:/wamp64/www/sh_books/src/AppBundle/Controller/SearchController.php</file>
-            <file>file:/C:/wamp64/www/sh_books/src/AppBundle/Entity/books.php</file>
+            <file>file:/C:/wamp64/www/sh_books/app/Resources/views/page/books.html.twig</file>
+            <file>file:/C:/wamp64/www/sh_books/src/AppBundle/Repository/imagesRepository.php</file>
         </group>
     </open-files>
 </project-private>
