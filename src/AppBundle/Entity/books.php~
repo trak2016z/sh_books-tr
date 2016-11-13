@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * books
@@ -366,5 +367,29 @@ class books
     public function getUsers()
     {
         return $this->users;
+    }
+
+    /**
+     * Set price
+     *
+     * @param string $price
+     *
+     * @return books
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return string
+     */
+    public function getPrice()
+    {
+        return $this->price;
     }
 }

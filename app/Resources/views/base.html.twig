@@ -104,22 +104,39 @@
                         </div>
                         {{ form_widget(form.searchButton, {'attr': {'class': 'hidden'} }) }}
                 {{ form_end(form) }} 
-                <li><a href="#">Zaloguj</a></li>
-                <li><a href="#">Załóż konto</a></li>
-                {#<li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                  </ul>
-                </li>#}
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-user"></span>&nbsp;{{ app.user.firstName }}&nbsp;{{ app.user.lastName }}&nbsp;<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">
+                                    <span class="fa fa-wrench"></span>&nbsp;Mój profil
+                            </a></li>
+                            <li><a href="#">
+                                    <span class="fa fa-book"></span>&nbsp;Moje książki
+                            </a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="{{ path('logout') }}">
+                                    <span class="glyphicon glyphicon-log-out"></span>&nbsp;Wyloguj
+                            </a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">
+                            <span class="fa fa-usd"></span>&nbsp;Sprzedaj
+                    </a></li>
+                {% else %}   
+                    <li><a href="#">
+                            <span class="glyphicon glyphicon-user"></span>&nbsp;Załóż konto
+                    </a></li>
+                    <li><a href="{{ path('login') }}">
+                            <span class="glyphicon glyphicon-log-in"></span>&nbsp;Zaloguj
+                    </a></li>
+                {% endif %}
             </ul>
           </div>
         </div>
-    </nav>
-     
+    </nav>     
     
     <div class="container">
         {% block container %}{% endblock %}

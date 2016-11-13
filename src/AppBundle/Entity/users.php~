@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
  * users
@@ -10,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="users")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\usersRepository")
  */
-class users
+class users implements AdvancedUserInterface, \Serializable
 {
     /**
      * @var int
@@ -70,7 +72,11 @@ class users
      * @ORM\Column(name="phone", type="string", length=255, nullable=true)
      */
     private $phone;
-
+    
+    /**
+     * @ORM\Column(name="isActive", type="boolean")
+     */
+    private $isActive;
 
     /**
      * Get id
@@ -80,6 +86,62 @@ class users
     public function getId()
     {
         return $this->id;
+    }
+    
+    public function isAccountNonExpired()
+    {
+        return true;
+    }
+
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    public function isEnabled()
+    {
+        return $this->isActive;
+    }
+    
+    public function getSalt() 
+    {
+        return null;
+    }
+    
+    public function getUsername()
+    {
+        return $this->email;
+    }
+    
+    public function getRoles() 
+    {
+        return array('ROLE_USER');
+    }
+
+    public function eraseCredentials()  {
+    }
+
+    public function serialize() {
+        return serialize(array(
+            $this->id,
+            $this->email,
+            $this->password,
+            $this->isActive
+        ));
+    }
+    
+    public function unserialize($serialized) {
+        list (
+            $this->id,
+            $this->email,
+            $this->password,
+            $this->isActive  
+        ) = unserialize($serialized);
     }
 
     /**
