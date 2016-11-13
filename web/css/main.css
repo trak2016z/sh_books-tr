@@ -1,10 +1,3 @@
-/* Books list */
-.books-img {
-    height: 120px;
-    width: 100%;
-    object-fit: contain;
-}
-
 /* Top panel */ 
 .navbar {
     border-radius: 0;
@@ -43,7 +36,76 @@
   padding-left: 10px;
 }
 
+/* Books list */
+.books-img img {
+    height: 277px;
+}
+
+.books-img, .book-images .panel-body {
+    padding: 0px!important;
+}
+
+.books-img img, .book-images img {
+    object-fit: cover;
+    width: 100%;
+}
+
+.book-img-left {
+    padding: 0px 2px 0px 0px!important;
+}
+
+.book-img-right {
+    padding: 0px 0px 0px 2px!important;
+}
+
+.book-img-half {
+    height: 436px;
+}
+
+.book-img-quarter {
+    height: 215px;
+}
+
+/* Book details */
+.book-price {
+    
+}
+
+.book-name {
+    
+}
+
+.book-author {
+    
+}
+
+.book-description {
+    
+}
+
+.ask-button, .to-favourite-button {
+    width: 100%;
+    display: inline-block;
+}
+
+.ask-button {
+    
+}
+
+.to-favourite-button {
+    
+}
+
+/* "fotorama" - jQuery plugin */
+.fotorama {
+    margin-bottom: 11px;
+}
+
 /* Others */
 .hidden {
     display: none;
+}
+
+.no-padding {
+    padding: 0px!important;
 }

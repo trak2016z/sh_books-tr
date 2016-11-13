@@ -4,7 +4,7 @@
     {{ parent() }}
     <div class="row">
         {% if books is empty %}
-            <h2>Brak wyników dla: "{{ searchField }}"</h2>
+            <h2>Brak wyników</h2>
         {% else %}
             {% for book in books %}    
                 <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
@@ -13,9 +13,9 @@
                             <p>{{ book['name'] }}</p>
                             <p>{{ book['author'] }}</p>
                         </div>
-                        <div class="panel-body">
-                            <a href="#" target="_blank" title="{{ book['description'] }}">
-                                <img src="{{ asset('images/') }}{{ booksImage[book['id']] }}" class="img-responsive books-img">
+                        <div class="panel-body books-img">
+                            <a href="{{ path("bookDetails", {'id' : book['id']}) }}" target="_blank" title="{{ book['description'] }}">
+                                <img src="{{ asset('images/') }}{{ booksImage[book['id']] }}" class="img-responsive">
                             </a>
                         </div>
                         <div class="panel-footer">

@@ -31,7 +31,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">SH Books</a>
+            <a class="navbar-brand" href="{{ path("homepage") }}">SH Books</a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
@@ -44,43 +44,43 @@
                             <div class="row">
                                 <div class="col-sm-3">
                                     <ul>
-                                        <li><a href="#"><i class="fa fa-book"></i> Albumy</a></li>
-                                        <li><a href="#"><i class="fa fa-book"></i> Biografie</a></li>
-                                        <li><a href="#"><i class="fa fa-book"></i> Biznes, ekonomia, marketing</a></li>
-                                        <li><a href="#"><i class="fa fa-book"></i> Dla dzieci</a></li>
-                                        <li><a href="#"><i class="fa fa-book"></i> Dla młodzieży</a></li>
-                                        <li><a href="#"><i class="fa fa-book"></i> Encyklopedie, leksykony</a></li>
-                                        <li><a href="#"><i class="fa fa-book"></i> Fantastyka</a></li>
+                                        <li><a href="{{ path("books", {'category' : '1'}) }}"><i class="fa fa-book"></i> Albumy</a></li>
+                                        <li><a href="{{ path("books", {'category' : '2'}) }}"><i class="fa fa-book"></i> Biografie</a></li>
+                                        <li><a href="{{ path("books", {'category' : '3'}) }}"><i class="fa fa-book"></i> Biznes, ekonomia, marketing</a></li>
+                                        <li><a href="{{ path("books", {'category' : '4'}) }}"><i class="fa fa-book"></i> Dla dzieci</a></li>
+                                        <li><a href="{{ path("books", {'category' : '5'}) }}"><i class="fa fa-book"></i> Dla młodzieży</a></li>
+                                        <li><a href="{{ path("books", {'category' : '6'}) }}"><i class="fa fa-book"></i> Encyklopedie, leksykony</a></li>
+                                        <li><a href="{{ path("books", {'category' : '7'}) }}"><i class="fa fa-book"></i> Fantastyka</a></li>
                                     </ul>
                                 </div>
                                 <div class="col-sm-3">
                                     <ul>
-                                        <li><a href="#"><i class="fa fa-book"></i> Filozofia</a></li>
-                                        <li><a href="#"><i class="fa fa-book"></i> Historia</a></li>
-                                        <li><a href="#"><i class="fa fa-book"></i> Informatyka</a></li>
-                                        <li><a href="#"><i class="fa fa-book"></i> Językoznawstwo, język polski</a></li>
-                                        <li><a href="#"><i class="fa fa-book"></i> Kalendarze</a></li>
-                                        <li><a href="#"><i class="fa fa-book"></i> Komiks</a></li>
-                                        <li><a href="#"><i class="fa fa-book"></i> Kuchnia i diety</a></li>
+                                        <li><a href="{{ path("books", {'category' : '8'}) }}"><i class="fa fa-book"></i> Filozofia</a></li>
+                                        <li><a href="{{ path("books", {'category' : '9'}) }}"><i class="fa fa-book"></i> Historia</a></li>
+                                        <li><a href="{{ path("books", {'category' : '10'}) }}"><i class="fa fa-book"></i> Informatyka</a></li>
+                                        <li><a href="{{ path("books", {'category' : '11'}) }}"><i class="fa fa-book"></i> Językoznawstwo, język polski</a></li>
+                                        <li><a href="{{ path("books", {'category' : '12'}) }}"><i class="fa fa-book"></i> Kalendarze</a></li>
+                                        <li><a href="{{ path("books", {'category' : '13'}) }}"><i class="fa fa-book"></i> Komiks</a></li>
+                                        <li><a href="{{ path("books", {'category' : '14'}) }}"><i class="fa fa-book"></i> Kuchnia i diety</a></li>
                                     </ul>
                                 </div>
                                 <div class="col-sm-3">
                                     <ul>
-                                        <li><a href="#"><i class="fa fa-book"></i> Literatura</a></li>
-                                        <li><a href="#"><i class="fa fa-book"></i> Literatura faktu</a></li>
-                                        <li><a href="#"><i class="fa fa-book"></i> Literatura obyczajowa</a></li>
-                                        <li><a href="#"><i class="fa fa-book"></i> Nauka języków</a></li>
-                                        <li><a href="#"><i class="fa fa-book"></i> Nauki ścisłe, medycyna</a></li>
-                                        <li><a href="#"><i class="fa fa-book"></i> Podręczniki szkolne, edukacja</a></li>
-                                        <li><a href="#"><i class="fa fa-book"></i> Poradniki</a></li>
+                                        <li><a href="{{ path("books", {'category' : '15'}) }}"><i class="fa fa-book"></i> Literatura</a></li>
+                                        <li><a href="{{ path("books", {'category' : '16'}) }}"><i class="fa fa-book"></i> Literatura faktu</a></li>
+                                        <li><a href="{{ path("books", {'category' : '17'}) }}"><i class="fa fa-book"></i> Literatura obyczajowa</a></li>
+                                        <li><a href="{{ path("books", {'category' : '18'}) }}"><i class="fa fa-book"></i> Nauka języków</a></li>
+                                        <li><a href="{{ path("books", {'category' : '19'}) }}"><i class="fa fa-book"></i> Nauki ścisłe, medycyna</a></li>
+                                        <li><a href="{{ path("books", {'category' : '20'}) }}"><i class="fa fa-book"></i> Podręczniki szkolne, edukacja</a></li>
+                                        <li><a href="{{ path("books", {'category' : '21'}) }}"><i class="fa fa-book"></i> Poradniki</a></li>
                                     </ul>
                                 </div>
                                 <div class="col-sm-3">
                                     <ul>
-                                        <li><a href="#"><i class="fa fa-book"></i> Prawo</a></li>
-                                        <li><a href="#"><i class="fa fa-book"></i> Psychologia i pedagogika</a></li>
-                                        <li><a href="#"><i class="fa fa-book"></i> Religie i wyznania</a></li>
-                                        <li><a href="#"><i class="fa fa-book"></i> Romans</a></li>
+                                        <li><a href="{{ path("books", {'category' : '22'}) }}"><i class="fa fa-book"></i> Prawo</a></li>
+                                        <li><a href="{{ path("books", {'category' : '23'}) }}"><i class="fa fa-book"></i> Psychologia i pedagogika</a></li>
+                                        <li><a href="{{ path("books", {'category' : '24'}) }}"><i class="fa fa-book"></i> Religie i wyznania</a></li>
+                                        <li><a href="{{ path("books", {'category' : '25'}) }}"><i class="fa fa-book"></i> Romans</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -121,7 +121,7 @@
     </nav>
      
     
-    <div class="container-fluid">
+    <div class="container">
         {% block container %}{% endblock %}
     </div>
     

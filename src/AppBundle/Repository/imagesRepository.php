@@ -34,7 +34,7 @@ class imagesRepository extends \Doctrine\ORM\EntityRepository {
     public function findByBookId($bookId) {
         $em = $this->getEntityManager();
         $query = $em->createQuery(
-            "SELECT IDENTITY(i.books) AS bookId, i.name 
+            "SELECT i.name 
             FROM AppBundle:images i 
             WHERE i.books = :bookId 
             ORDER BY i.sequence"

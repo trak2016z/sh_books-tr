@@ -18,15 +18,14 @@ use AppBundle\Helper\ConstantsHelper;
 class SearchController extends Controller {
     
     /**
-     * Presents the home page view.
+     * Renders the home page view.
      * 
      * @Route("/", name="homepage")
      */
     public function homepageAction(Request $request) {
         ConstantsHelper::initialize($this->get('twig')->getExtension('core')); 
-        $search = new Search();
         $em = $this->getDoctrine()->getManager();
-        $form = $this->_createSearchForm($search);
+        $form = $this->_createSearchForm();
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $searchArray = $this->_prepareSearchArray($form->getData());
@@ -43,9 +42,6 @@ class SearchController extends Controller {
         
         return $this->render('page/home.html.twig', array(
             'form' => $form->createView(),
-            'search' => $search,
-            'twigDateFormat' => ConstantsHelper::$twigDateFormat,
-            'dateFormat' => ConstantsHelper::$dateFormat,
             'books' => $books,
             'booksImage' => $bookImageArray
         )); 
@@ -59,8 +55,7 @@ class SearchController extends Controller {
     public function booksAction(Request $request, $category=0, $searchField=0) {
         ConstantsHelper::initialize($this->get('twig')->getExtension('core'));
         $parameters = $this->_prepareParameters($category, $searchField);
-        $search = new Search();
-        $form = $this->_createSearchForm($search, $parameters);
+        $form = $this->_createSearchForm($parameters);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $searchArray = $this->_prepareSearchArray($form->getData());
@@ -83,11 +78,33 @@ class SearchController extends Controller {
             'books' => $books,
             'booksImage' => $bookImageArray,
             'searchField' => $parameters['searchField'],
-            'twigDateFormat' => ConstantsHelper::$twigDateFormat,
-            'dateFormat' => ConstantsHelper::$dateFormat,
         )  + $parameters;
         
         return $this->render('page/books.html.twig', $variables);
+    }
+    
+    /**
+     * Renders the book details view.
+     * 
+     * @Route("/book/{id}", name="bookDetails")
+     */
+    public function bookDetailsAction(Request $request, $id) {
+        ConstantsHelper::initialize($this->get('twig')->getExtension('core'));
+        $em = $this->getDoctrine()->getManager();
+        $form = $this->_createSearchForm();
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $searchArray = $this->_prepareSearchArray($form->getData());
+            return $this->redirectToRoute('books', $searchArray);
+        }
+        $book = $em->getRepository('AppBundle:books')->findById($id)[0];
+        $images = $em->getRepository('AppBundle:images')->findByBookId($book['id']);
+        
+        return $this->render('page/bookDetails.html.twig', array(
+            'form' => $form->createView(),
+            'book' => $book,
+            'images' => $images
+        )); 
     }
     
     /**
@@ -107,7 +124,8 @@ class SearchController extends Controller {
     /**
      * Returns a form for searching books (with filled fields from URL).
      */
-    private function _createSearchForm($search, $parameters = NULL) {
+    private function _createSearchForm($parameters = NULL) {
+        $search = new Search();
         if($parameters) {
             $search->searchField = $parameters['searchField'];
         }

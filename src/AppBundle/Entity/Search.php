@@ -13,12 +13,20 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class Search {
     
+    /**
+     * @Assert\NotBlank()
+     */
     public $searchField;
     
     /**
      * @Assert\Callback
      */
     public function validate(ExecutionContextInterface $context, $payload) {
+        if ($this->searchField == NULL) {
+            $context->buildViolation("Nie podano tekstu do wyszukania.")
+                ->atPath('searchField')
+                ->addViolation();
+        }
     }
     
 }
