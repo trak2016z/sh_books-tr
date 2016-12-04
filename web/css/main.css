@@ -83,6 +83,11 @@
     
 }
 
+.book-email {
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
 .ask-button, .to-favourite-button {
     width: 100%;
     display: inline-block;

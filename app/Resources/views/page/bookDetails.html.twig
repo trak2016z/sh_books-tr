@@ -72,6 +72,10 @@
             <p class="book-description">{{ book['description'] }}</p>
             <button type='button' onclick="location.href='#';" class='btn btn-default ask-button'>Zapytaj o książkę</button>
             <button type='button' onclick="location.href='#';" class='btn btn-default to-favourite-button'>Dodaj do ulubionych</button>
+            <p class="book-email">Email: {{ book['email'] }}</p>
+            {% if book['phone'] %}
+                <p>Telefon: {{ book['phone'] }}</p>
+            {% endif %}
         </div>
     </div>    
             

@@ -53,8 +53,10 @@ class booksRepository extends \Doctrine\ORM\EntityRepository {
     public function findById($bookId) {
         $em = $this->getEntityManager();
         $query = $em->createQuery(
-            "SELECT b.id, b.name, b.author, b.price, b.description, b.forChange 
+            "SELECT b.id, b.name, b.author, b.price, b.description, b.forChange, 
+                u.email, u.phone 
             FROM AppBundle:books b 
+            JOIN b.users u 
             WHERE b.id = :bookId"
         )->setParameter("bookId", $bookId);
         return $query->getResult();
