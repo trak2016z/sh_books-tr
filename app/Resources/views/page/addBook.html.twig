@@ -1,0 +1,159 @@
+{% extends "page/_fileUploadBase.html.twig" %}
+
+{% block container %}
+    {{ parent() }}
+    <div class="row">
+        <div class="col-lg-12"> 
+            <form id="fileupload" data-url="{{ path('uploadImages', {
+                                                        'bookId': bookId}) }}" 
+                    action="{{ path('uploadImages', {
+                                        'bookId': bookId}) }}" method="post" enctype="multipart/form-data">
+                <!-- Redirect browsers with JavaScript disabled to the origin page -->
+                <noscript><input type="hidden" name="redirect" value="{{ path('uploadImages', {
+                                                                                'bookId': bookId}) }}"></noscript>
+                <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+                <div class="row fileupload-buttonbar">
+                    <div class="col-lg-7">
+                        <!-- The fileinput-button span is used to style the file input field as button -->
+                        <span class="btn btn-success fileinput-button">
+                            {#<i class="glyphicon glyphicon-plus"></i>#}
+                            <span>Add files...</span>
+                            <input type="file" name="files[]" multiple>
+                        </span>
+                        <button type="reset" class="btn btn-warning cancel">
+                            {#<i class="glyphicon glyphicon-ban-circle"></i>#}
+                            <span>Cancel upload</span>
+                        </button>
+                        <button type="button" class="btn btn-danger delete">
+                            {#<i class="glyphicon glyphicon-trash"></i>#}
+                            <span>Delete</span>
+                        </button>
+                        <input type="checkbox" class="toggle">
+                        <!-- The global file processing state -->
+                        <span class="fileupload-process"></span>
+                    </div>
+                    <!-- The global progress state -->
+                    <div class="col-lg-5 fileupload-progress fade">
+                        <!-- The global progress bar -->
+                        <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+                        </div>
+                        <!-- The extended global progress state -->
+                        <div class="progress-extended">&nbsp;</div>
+                    </div>
+                </div>
+                <!-- The table listing the files available for upload/download -->
+                <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
+            </form>
+        </div>
+    </div>
+        
+<!-- The blueimp Gallery widget -->
+<div class="row">
+    <div class="col-lg-12"> 
+        <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
+            <div class="slides"></div>
+            <h3 class="title"></h3>
+            <a class="prev">‹</a>
+            <a class="next">›</a>
+            <a class="close">×</a>
+            <a class="play-pause"></a>
+            <ol class="indicator"></ol>
+        </div>
+    </div>
+</div>    
+
+{{ form_start(bookForm) }}
+    <div class="row">
+        <div class="col-lg-12"> 
+            {% if form_errors(bookForm) %}
+                <div class="alert alert-danger">
+                    {{ form_errors(bookForm) }}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                {{ form_label(bookForm.name) }}
+                {% if form_errors(bookForm.name) %}
+                    <div class="alert alert-danger">
+                        {{ form_errors(bookForm.name) }}
+                    </div>
+                {% endif %}
+                {{ form_widget(bookForm.name) }}
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                {{ form_label(bookForm.author) }}
+                {% if form_errors(bookForm.author) %}
+                    <div class="alert alert-danger">
+                        {{ form_errors(bookForm.author) }}
+                    </div>
+                {% endif %}
+                {{ form_widget(bookForm.author) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                {{ form_label(bookForm.description) }}
+                {% if form_errors(bookForm.description) %}
+                    <div class="alert alert-danger">
+                        {{ form_errors(bookForm.description) }}
+                    </div>
+                {% endif %}
+                {{ form_widget(bookForm.description) }}
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                {{ form_label(bookForm.keyWords) }}
+                {% if form_errors(bookForm.keyWords) %}
+                    <div class="alert alert-danger">
+                        {{ form_errors(bookForm.keyWords) }}
+                    </div>
+                {% endif %}
+                {{ form_widget(bookForm.keyWords) }}
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                {{ form_label(bookForm.category) }}
+                {% if form_errors(bookForm.category) %}
+                    <div class="alert alert-danger">
+                        {{ form_errors(bookForm.category) }}
+                    </div>
+                {% endif %}
+                {{ form_widget(bookForm.category) }}
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="checkbox">
+                {% if form_errors(bookForm.forChange) %}
+                    <div class="alert alert-danger">
+                        {{ form_errors(bookForm.forChange) }}
+                    </div>
+                {% endif %}
+                <label>{{ form_widget(bookForm.forChange) }}{{ bookForm.forChange.vars.label }}</label>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <div class="row">
+        <div class="col-lg-12">
+            {{ form_widget(bookForm.save)}} 
+        </div>
+    </div>         
+{{ form_end(bookForm) }}
+
+{% endblock %}

@@ -39,7 +39,7 @@ class books
     
     /**
      * @ORM\ManyToOne(targetEntity="categories", inversedBy="books")
-     * @ORM\JoinColumn(name="categoryId", referencedColumnName="id")
+     * @ORM\JoinColumn(name="categoryId", referencedColumnName="id", nullable=true)
      */
     private $categories;
     
@@ -52,7 +52,7 @@ class books
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
     private $name;
 
@@ -64,16 +64,16 @@ class books
     private $author;
     
     /**
-     * @var string
+     * @var float
      *
-     * @ORM\Column(name="ratingOverall", type="decimal", precision=10, scale=2)
+     * @ORM\Column(name="ratingOverall", type="float", nullable=true)
      */
     private $price;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=255)
+     * @ORM\Column(name="description", type="string", length=255, nullable=true)
      */
     private $description;
 
@@ -94,7 +94,7 @@ class books
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="addedAt", type="date")
+     * @ORM\Column(name="addedAt", type="date", nullable=true)
      */
     private $addedAt;
 
@@ -369,10 +369,11 @@ class books
         return $this->users;
     }
 
+
     /**
      * Set price
      *
-     * @param string $price
+     * @param float $price
      *
      * @return books
      */
@@ -386,7 +387,7 @@ class books
     /**
      * Get price
      *
-     * @return string
+     * @return float
      */
     public function getPrice()
     {
