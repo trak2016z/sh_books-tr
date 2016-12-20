@@ -15,8 +15,9 @@ class FormHelper {
      */
     public static function createSearchEntity($parameters = NULL) {
         $search = new \AppBundle\Entity\Search();
-        if($parameters) {
+        if($parameters && ($parameters['searchField'] != '0')) {
             $search->searchField = $parameters['searchField'];
+            
         }
         return $search;
     }

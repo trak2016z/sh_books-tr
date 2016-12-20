@@ -78,9 +78,8 @@ class SearchController extends Controller {
         $variables = array(
             'form' => $form->createView(),
             'books' => $books,
-            'booksImage' => $bookImageArray,
-            'searchField' => $parameters['searchField'],
-        )  + $parameters;
+            'booksImage' => $bookImageArray
+        );
         
         return $this->render('page/books.html.twig', $variables);
     }
