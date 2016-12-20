@@ -47,18 +47,29 @@ class booksRepository extends \Doctrine\ORM\EntityRepository {
     /**
      * Returns book with specyfic book id.
      */
-    public function findById($bookId) {
+    public function findById($bookId, $withCategory = FALSE) {
+        if ($withCategory) {
+            $additionalSelect = ', IDENTITY(b.categories) AS categoryId, b.keyWords';
+            $join = '';
+        } else {
+            $additionalSelect = ', u.email, u.phone';
+            $join = 'JOIN b.users u';
+        }
         $em = $this->getEntityManager();
         $query = $em->createQuery(
-            "SELECT b.id, b.name, b.author, b.price, b.description, b.forChange, 
-                u.email, u.phone 
+            "SELECT b.id, b.name, b.author, b.price, b.description, b.forChange $additionalSelect 
             FROM AppBundle:books b 
-            JOIN b.users u 
+            $join 
             WHERE b.addedAt is not NULL AND b.id = :bookId"
         )->setParameter("bookId", $bookId);
-        return $query->getResult();
+        
+        $result = $query->getResult();
+        if (!empty($result)) {
+            return $result[0];
+        }
+        return $result;
     }
-    
+        
     /*
      * Returns new book object needed to add advertisement.
      */
@@ -81,7 +92,7 @@ class booksRepository extends \Doctrine\ORM\EntityRepository {
         $query = $em->createQuery(
             "UPDATE AppBundle:books b 
             SET b.name = :name, b.author = :author, b.description = :description, b.forChange = :forChange, 
-            b.keyWords = :keyWords, b.categories = :categoryId, b.addedAt = :today 
+            b.keyWords = :keyWords, b.price = :price, b.categories = :categoryId, b.addedAt = :today 
             WHERE b.id = :bookId"
         )->setParameters(array(
             'bookId' => $bookId,
@@ -90,6 +101,7 @@ class booksRepository extends \Doctrine\ORM\EntityRepository {
             'description' => $data->description,
             'forChange' => $data->forChange,
             'keyWords' => $data->keyWords,
+            'price' => $data->price,
             'categoryId' => $data->category,           
             'today' => new \DateTime($today)            
         ));

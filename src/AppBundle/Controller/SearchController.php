@@ -99,7 +99,7 @@ class SearchController extends Controller {
             $searchArray = FormHelper::prepareSearchArray($form->getData());
             return $this->redirectToRoute('books', $searchArray);
         }
-        $book = $em->getRepository('AppBundle:books')->findById($id)[0];
+        $book = $em->getRepository('AppBundle:books')->findById($id);
         $images = $em->getRepository('AppBundle:images')->findByBookId($book['id']);
         
         return $this->render('page/bookDetails.html.twig', array(

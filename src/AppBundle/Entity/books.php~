@@ -66,7 +66,7 @@ class books
     /**
      * @var float
      *
-     * @ORM\Column(name="ratingOverall", type="float", nullable=true)
+     * @ORM\Column(name="price", type="float", nullable=true)
      */
     private $price;
 

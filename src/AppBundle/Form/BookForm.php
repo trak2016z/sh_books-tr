@@ -56,6 +56,10 @@ class BookForm extends AbstractType {
                 'required' => FALSE,
                 'label_attr' => array('class' => 'control-label'),
                 'attr' => array('class' => 'chosen-select', 'data-placeholder' => 'Wybierz kategorię')))
+            ->add('price', null, array(
+                'label' => 'Cena',
+                'label_attr' => array('class' => 'control-label'),
+                'attr' => array('class' => 'form-control input-sm', 'placeholder' => 'Cena')))
             ->add('save', SubmitType::class, array(
                 'label' => 'Wyślij',
                 'attr' => array('class' => 'btn btn-lg btn-success')));

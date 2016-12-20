@@ -17,11 +17,11 @@ use AppBundle\Helper\ConstantsHelper;
 class BookActionsController extends Controller {
     
     /**
-     * Renders the book details view.
+     * Renders the book add or edit form.
      * 
-     * @Route("/add-book/{bookId}", name="addBook", requirements={"bookId": "\d+"})
+     * @Route("/add-edit-book/{bookId}", name="addBook", requirements={"bookId": "\d+"})
      */
-    public function addBookAction(Request $request, $bookId = NULL) {
+    public function addEditBookAction(Request $request, $bookId = NULL) {
         $user = $this->getUser();
         if (!$user) {
             return $this->redirectToRoute('login');
@@ -39,7 +39,7 @@ class BookActionsController extends Controller {
             return $this->redirectToRoute('books', $searchArray);
         }
         
-        $bookForm = $this->_createBookForm($em);
+        $bookForm = $this->_createBookForm($em, $bookId);
         $bookForm->handleRequest($request);
         if ($bookForm->isSubmitted() && $bookForm->isValid()) {
             $em->getRepository('AppBundle:books')->update($bookForm->getData(), $bookId, date(ConstantsHelper::$usaDateFormat));
@@ -56,12 +56,24 @@ class BookActionsController extends Controller {
     /*
      * Returns book form (to adding new books).
      */
-    private function _createBookForm($em) {
+    private function _createBookForm($em, $bookId) {
+        $book = $em->getRepository('AppBundle:books')->findById($bookId, TRUE);
+        $bookObject = new \AppBundle\Entity\Book();
+        if (!empty($book)) {
+            $bookObject->author = $book['author'];
+            $bookObject->category = $book['categoryId'];
+            $bookObject->description = $book['description'];
+            $bookObject->forChange = $book['forChange'];
+            $bookObject->keyWords = $book['keyWords'];
+            $bookObject->name = $book['name'];
+            $bookObject->price = $book['price'];
+        }
+        
         $categories = [];
         foreach ($em->getRepository('AppBundle:categories')->getAll() as $category) {
             $categories[$category['name']] = $category['id'];
         }
-        return $this->createForm(\AppBundle\Form\BookForm::class, new \AppBundle\Entity\Book(), array('categories' => $categories));
+        return $this->createForm(\AppBundle\Form\BookForm::class, $bookObject, array('categories' => $categories));
     }
     
 }
