@@ -19,7 +19,7 @@ class BookActionsController extends Controller {
     /**
      * Renders the book add or edit form.
      * 
-     * @Route("/add-edit-book/{bookId}", name="addBook", requirements={"bookId": "\d+"})
+     * @Route("/add-edit-book/{bookId}", name="addEditBook", requirements={"bookId": "\d+"})
      */
     public function addEditBookAction(Request $request, $bookId = NULL) {
         $user = $this->getUser();
@@ -28,7 +28,7 @@ class BookActionsController extends Controller {
         }
         $em = $this->getDoctrine()->getManager();
         if (!$bookId) {
-            return $this->redirectToRoute('addBook', array('bookId' => $em->getRepository('AppBundle:books')->makeBook($user)));
+            return $this->redirectToRoute('addEditBook', array('bookId' => $em->getRepository('AppBundle:books')->makeBook($user)));
         }
         ConstantsHelper::initialize($this->get('twig')->getExtension('core'));
         $search = FormHelper::createSearchEntity();
@@ -46,7 +46,7 @@ class BookActionsController extends Controller {
             return $this->redirectToRoute('homepage');
         }
         
-        return $this->render('page/addBook.html.twig', array(
+        return $this->render('page/addEditBook.html.twig', array(
             'form' => $form->createView(),
             'bookForm' => $bookForm->createView(),
             'bookId' => $bookId

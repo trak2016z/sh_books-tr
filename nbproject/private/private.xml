@@ -2,20 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/wamp64/www/sh_books/app/Resources/views/base.html.twig</file>
-            <file>file:/C:/wamp64/www/sh_books/app/Resources/views/page/addBook.html.twig</file>
-            <file>file:/C:/wamp64/www/sh_books/src/AppBundle/Repository/booksRepository.php</file>
-            <file>file:/C:/wamp64/www/sh_books/app/Resources/views/page/books.html.twig</file>
-            <file>file:/C:/wamp64/www/sh_books/src/AppBundle/Repository/imagesRepository.php</file>
-            <file>file:/C:/wamp64/www/sh_books/src/AppBundle/Controller/BookActionsController.php</file>
-            <file>file:/C:/wamp64/www/sh_books/app/Resources/views/page/_fileUploadBase.html.twig</file>
-            <file>file:/C:/wamp64/www/sh_books/src/AppBundle/Controller/SearchController.php</file>
-            <file>file:/C:/wamp64/www/sh_books/src/AppBundle/Entity/Book.php</file>
-            <file>file:/C:/wamp64/www/sh_books/src/AppBundle/Controller/UploadController.php</file>
-            <file>file:/C:/wamp64/www/sh_books/src/AppBundle/Form/BookForm.php</file>
-            <file>file:/C:/wamp64/www/sh_books/src/AppBundle/Entity/images.php</file>
-            <file>file:/C:/wamp64/www/sh_books/src/AppBundle/Services/Upload.php</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
