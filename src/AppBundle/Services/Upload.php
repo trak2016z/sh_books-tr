@@ -103,7 +103,6 @@ class Upload {
    */
   protected function deleteFile($file) {
     $file_path = $file;
-
     if (file_exists($file_path)) {
       unlink($file_path);
     }
